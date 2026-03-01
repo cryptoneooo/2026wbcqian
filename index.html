@@ -6,7 +6,6 @@
     <title>錢公語錄機 🎙️ | 2026 世界棒球經典賽特別版</title>
     <style>
         :root {
-            --primary: #1a2c5a;
             --accent: #e8003d;
             --gold: #f5a623;
             --bg: #08101e;
@@ -15,11 +14,8 @@
             --text: #e8eaf6;
             --text-dim: #8892b0;
             --border: #1e2d4a;
-            --green: #22c55e;
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
             background: var(--bg);
             color: var(--text);
@@ -44,11 +40,6 @@
             background:
                 radial-gradient(ellipse at 20% 50%, rgba(232,0,61,0.12) 0%, transparent 55%),
                 radial-gradient(ellipse at 80% 50%, rgba(245,166,35,0.07) 0%, transparent 55%);
-            animation: headerGlow 5s ease-in-out infinite alternate;
-        }
-        @keyframes headerGlow {
-            from { opacity: 0.7; }
-            to   { opacity: 1; }
         }
         .header-inner { position: relative; z-index: 1; }
         .wbc-badge {
@@ -63,7 +54,7 @@
             margin-bottom: 12px;
         }
         h1 {
-            font-size: clamp(32px, 6vw, 56px);
+            font-size: clamp(32px, 6vw, 52px);
             font-weight: 900;
             background: linear-gradient(135deg, #ffffff 30%, var(--gold));
             -webkit-background-clip: text;
@@ -72,180 +63,119 @@
             line-height: 1.15;
             letter-spacing: 2px;
         }
-        .subtitle {
-            color: var(--text-dim);
-            font-size: 15px;
-            margin-top: 10px;
-            font-style: italic;
-        }
+        .subtitle { color: var(--text-dim); font-size: 15px; margin-top: 10px; font-style: italic; }
 
         /* ── Ticker ── */
-        .ticker-wrap {
-            background: linear-gradient(90deg, var(--accent), #a8001c, var(--accent));
-            padding: 10px 0;
-            overflow: hidden;
-        }
-        .ticker-track {
-            display: flex;
-            animation: ticker 40s linear infinite;
-            white-space: nowrap;
-        }
-        .ticker-item {
-            padding: 0 50px;
-            font-size: 13px;
-            font-weight: 600;
-            color: #fff;
-        }
-        @keyframes ticker {
-            0%   { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
+        .ticker-wrap { background: linear-gradient(90deg, var(--accent), #a8001c, var(--accent)); padding: 10px 0; overflow: hidden; }
+        .ticker-track { display: flex; animation: ticker 40s linear infinite; white-space: nowrap; }
+        .ticker-item { padding: 0 50px; font-size: 13px; font-weight: 600; color: #fff; }
+        @keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 
         /* ── Layout ── */
-        main {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 36px 20px 60px;
-        }
+        main { max-width: 800px; margin: 0 auto; padding: 40px 20px 60px; }
 
-        /* ── Cards ── */
-        .card {
+        /* ── Chat Input ── */
+        .chat-card {
             background: var(--card-bg);
             border: 1px solid var(--border);
-            border-radius: 18px;
+            border-radius: 20px;
             padding: 28px;
             margin-bottom: 28px;
         }
-        .card-title {
-            font-size: 16px;
+        .chat-label {
+            font-size: 14px;
             font-weight: 700;
             color: var(--gold);
-            margin-bottom: 22px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            margin-bottom: 14px;
             letter-spacing: 1px;
         }
-
-        /* ── Form ── */
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
-            gap: 14px;
-            margin-bottom: 24px;
+        .input-row {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
         }
-        .form-group { display: flex; flex-direction: column; gap: 7px; }
-        label {
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--text-dim);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-        }
-        select, input[type="number"] {
+        textarea {
+            flex: 1;
             background: #0a1120;
-            border: 1px solid var(--border);
-            border-radius: 9px;
+            border: 1.5px solid var(--border);
+            border-radius: 14px;
             color: var(--text);
-            padding: 10px 13px;
-            font-size: 14px;
+            padding: 16px 18px;
+            font-size: 16px;
             font-family: inherit;
+            resize: none;
+            min-height: 80px;
+            line-height: 1.6;
             transition: border-color 0.2s, box-shadow 0.2s;
-            appearance: none;
-            -webkit-appearance: none;
-            cursor: pointer;
         }
-        select:focus, input[type="number"]:focus {
+        textarea::placeholder { color: var(--text-dim); font-size: 14px; }
+        textarea:focus {
             outline: none;
             border-color: var(--accent);
             box-shadow: 0 0 0 3px rgba(232,0,61,0.12);
         }
-        select option { background: #0a1120; }
-
-        /* ── Situation buttons ── */
-        .situation-label-text {
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--text-dim);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 10px;
-        }
-        .situation-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-            gap: 8px;
-            margin-bottom: 24px;
-        }
-        .sit-btn {
-            background: #0a1120;
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            color: var(--text-dim);
-            padding: 11px 6px;
-            font-size: 13px;
-            font-family: inherit;
-            cursor: pointer;
-            transition: all 0.18s;
-            text-align: center;
-            line-height: 1.4;
-        }
-        .sit-btn:hover { border-color: #3a4f7a; color: var(--text); }
-        .sit-btn.active {
-            background: rgba(232,0,61,0.12);
-            border-color: var(--accent);
-            color: #ff4d6d;
-            font-weight: 700;
-        }
-
-        /* ── Generate button ── */
-        .generate-btn {
-            width: 100%;
+        .send-btn {
             background: linear-gradient(135deg, #e8003d, #a8001c);
             border: none;
             border-radius: 14px;
             color: #fff;
-            font-size: 18px;
+            font-size: 15px;
             font-weight: 800;
-            padding: 18px;
+            padding: 0 22px;
+            height: 80px;
             cursor: pointer;
             font-family: inherit;
-            letter-spacing: 3px;
-            transition: all 0.25s;
-            position: relative;
-            overflow: hidden;
+            letter-spacing: 1px;
+            transition: all 0.2s;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
-        .generate-btn::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.12), transparent);
+        .send-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,0,61,0.4); }
+        .send-btn:active { transform: none; }
+
+        /* ── Example chips ── */
+        .examples-label { font-size: 12px; color: var(--text-dim); margin: 14px 0 8px; letter-spacing: 1px; font-weight: 600; }
+        .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+        .chip {
+            background: #0a1120;
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            color: var(--text-dim);
+            font-size: 12px;
+            padding: 6px 14px;
+            cursor: pointer;
+            transition: all 0.18s;
+            font-family: inherit;
         }
-        .generate-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(232,0,61,0.45);
+        .chip:hover { border-color: var(--accent); color: var(--text); background: rgba(232,0,61,0.07); }
+
+        /* ── Parse result hint ── */
+        .parse-hint {
+            margin-top: 14px;
+            background: rgba(245,166,35,0.08);
+            border: 1px solid rgba(245,166,35,0.2);
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-size: 13px;
+            color: var(--text-dim);
+            display: none;
+            line-height: 1.7;
         }
-        .generate-btn:active { transform: translateY(0); }
+        .parse-hint.visible { display: block; }
+        .parse-hint span { color: var(--gold); font-weight: 700; }
 
         /* ── Output ── */
         .output-card {
             display: none;
             background: linear-gradient(160deg, #0f1729, #111f38);
             border: 1px solid #2a3d66;
-            border-radius: 18px;
+            border-radius: 20px;
             padding: 28px;
             margin-bottom: 28px;
         }
-        .output-card.visible {
-            display: block;
-            animation: slideUp 0.45s cubic-bezier(0.22,1,0.36,1);
-        }
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(28px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
+        .output-card.visible { display: block; animation: slideUp 0.45s cubic-bezier(0.22,1,0.36,1); }
+        @keyframes slideUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
 
-        /* Scoreboard */
         .scoreboard {
             background: #060e1a;
             border: 1px solid var(--gold);
@@ -254,160 +184,85 @@
             margin-bottom: 22px;
             font-family: 'Courier New', monospace;
         }
-        .scoreboard-main {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-        }
+        .sb-main { display: flex; justify-content: space-between; align-items: center; }
         .sb-team { color: var(--gold); font-weight: 700; font-size: 15px; }
-        .sb-score { font-size: 32px; font-weight: 900; color: #fff; letter-spacing: 4px; }
-        .sb-meta {
-            color: var(--text-dim);
-            font-size: 12px;
-            margin-top: 8px;
-            text-align: center;
-            font-family: inherit;
-        }
+        .sb-score { font-size: 30px; font-weight: 900; color: #fff; letter-spacing: 4px; }
+        .sb-meta { color: var(--text-dim); font-size: 12px; margin-top: 8px; text-align: center; font-family: inherit; }
 
-        /* Commentator header */
         .commentator-header {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 20px;
-            padding-bottom: 18px;
+            display: flex; align-items: center; gap: 16px;
+            margin-bottom: 20px; padding-bottom: 18px;
             border-bottom: 1px solid var(--border);
         }
         .avatar {
-            width: 58px;
-            height: 58px;
-            border-radius: 50%;
+            width: 58px; height: 58px; border-radius: 50%;
             background: linear-gradient(135deg, #1a2c5a, var(--accent));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 26px;
-            flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 26px; flex-shrink: 0;
             box-shadow: 0 0 20px rgba(232,0,61,0.3);
         }
         .commentator-info h3 { font-size: 18px; font-weight: 800; }
         .commentator-info p  { font-size: 12px; color: var(--text-dim); margin-top: 3px; }
         .on-air {
-            margin-left: auto;
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            color: var(--accent);
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 2px;
+            margin-left: auto; display: flex; align-items: center;
+            gap: 7px; color: var(--accent); font-size: 12px; font-weight: 700; letter-spacing: 2px;
         }
-        .air-dot {
-            width: 9px;
-            height: 9px;
-            border-radius: 50%;
-            background: var(--accent);
-            animation: blink 1s ease-in-out infinite;
-        }
+        .air-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); animation: blink 1s ease-in-out infinite; }
         @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
         .situation-tag {
             display: inline-block;
             background: rgba(245,166,35,0.14);
             color: var(--gold);
-            font-size: 12px;
-            font-weight: 700;
-            padding: 4px 14px;
-            border-radius: 30px;
-            margin-bottom: 18px;
-            letter-spacing: 1px;
+            font-size: 12px; font-weight: 700;
+            padding: 4px 14px; border-radius: 30px;
+            margin-bottom: 18px; letter-spacing: 1px;
         }
         .commentary-text {
             font-size: clamp(18px, 3.5vw, 24px);
-            line-height: 1.9;
-            font-weight: 500;
-            letter-spacing: 0.3px;
+            line-height: 1.9; font-weight: 500; letter-spacing: 0.3px;
         }
-        .commentary-text .em  { color: var(--gold); font-weight: 800; }
-        .commentary-text .ex  { color: #ff4d6d; font-weight: 900; font-size: 1.15em; }
-        .commentary-text .pause { color: var(--text-dim); }
+        .commentary-text .em   { color: var(--gold); font-weight: 800; }
+        .commentary-text .ex   { color: #ff4d6d; font-weight: 900; font-size: 1.15em; }
+        .commentary-text .pause{ color: var(--text-dim); }
+
+        /* ── Error state ── */
+        .error-card {
+            display: none;
+            background: rgba(232,0,61,0.08);
+            border: 1px solid rgba(232,0,61,0.3);
+            border-radius: 14px;
+            padding: 20px 24px;
+            margin-bottom: 24px;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        .error-card.visible { display: block; }
+        .error-card strong { color: var(--accent); }
 
         /* ── Quotes DB ── */
         .section-heading {
-            font-size: 20px;
-            font-weight: 800;
-            margin-bottom: 18px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            letter-spacing: 1px;
+            font-size: 20px; font-weight: 800;
+            margin-bottom: 18px; display: flex; align-items: center; gap: 12px; letter-spacing: 1px;
         }
-        .section-heading::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--border);
-        }
-        .quotes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-            gap: 14px;
-        }
+        .section-heading::after { content:''; flex:1; height:1px; background: var(--border); }
+        .quotes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 14px; }
         .q-card {
-            background: var(--card-bg2);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 18px;
-            transition: all 0.2s;
-            cursor: default;
+            background: var(--card-bg2); border: 1px solid var(--border);
+            border-radius: 14px; padding: 18px; transition: all 0.2s; cursor: default;
         }
-        .q-card:hover {
-            border-color: rgba(245,166,35,0.5);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-        }
+        .q-card:hover { border-color: rgba(245,166,35,0.5); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
         .q-tags { margin-bottom: 10px; }
-        .q-tag {
-            display: inline-block;
-            background: rgba(26,44,90,0.9);
-            color: var(--text-dim);
-            font-size: 11px;
-            padding: 2px 8px;
-            border-radius: 5px;
-            margin-right: 4px;
-            margin-bottom: 4px;
-        }
-        .q-text {
-            font-size: 14px;
-            line-height: 1.75;
-            color: var(--text);
-            margin-bottom: 12px;
-            font-style: italic;
-        }
-        .q-context {
-            font-size: 12px;
-            color: var(--text-dim);
-            border-top: 1px solid var(--border);
-            padding-top: 10px;
-            line-height: 1.6;
-        }
+        .q-tag { display:inline-block; background:rgba(26,44,90,0.9); color:var(--text-dim); font-size:11px; padding:2px 8px; border-radius:5px; margin-right:4px; margin-bottom:4px; }
+        .q-text { font-size:14px; line-height:1.75; color:var(--text); margin-bottom:12px; font-style:italic; }
+        .q-context { font-size:12px; color:var(--text-dim); border-top:1px solid var(--border); padding-top:10px; line-height:1.6; }
 
-        /* ── Footer ── */
-        footer {
-            text-align: center;
-            padding: 32px 20px;
-            color: var(--text-dim);
-            font-size: 12px;
-            border-top: 1px solid var(--border);
-            line-height: 1.8;
-        }
+        footer { text-align:center; padding:32px 20px; color:var(--text-dim); font-size:12px; border-top:1px solid var(--border); line-height:1.8; }
 
-        /* ── Responsive ── */
-        @media (max-width: 480px) {
-            .form-grid { grid-template-columns: 1fr 1fr; }
-            .situation-grid { grid-template-columns: repeat(3, 1fr); }
-            .scoreboard-main { flex-direction: column; gap: 4px; }
+        @media(max-width:480px) {
+            .input-row { flex-direction: column; }
+            .send-btn { width: 100%; height: 52px; }
+            .sb-main { flex-direction: column; gap: 4px; }
         }
     </style>
 </head>
@@ -417,7 +272,7 @@
     <div class="header-inner">
         <div class="wbc-badge">⚾ 2026 WORLD BASEBALL CLASSIC</div>
         <h1>錢公語錄機 🎙️</h1>
-        <p class="subtitle">輸入戰況，聽錢定遠為你解說！「這只是一個平凡的飛球⋯⋯」</p>
+        <p class="subtitle">用自然語言描述戰況，讓錢定遠幫你解說！</p>
     </div>
 </header>
 
@@ -427,131 +282,26 @@
 
 <main>
 
-    <!-- Input card -->
-    <div class="card">
-        <div class="card-title">🏟️ 輸入當前戰況</div>
-
-        <div class="form-grid">
-            <div class="form-group">
-                <label>主隊</label>
-                <select id="homeTeam">
-                    <option value="台灣">🇹🇼 台灣</option>
-                    <option value="日本">🇯🇵 日本</option>
-                    <option value="美國">🇺🇸 美國</option>
-                    <option value="多明尼加">🇩🇴 多明尼加</option>
-                    <option value="古巴">🇨🇺 古巴</option>
-                    <option value="韓國">🇰🇷 韓國</option>
-                    <option value="墨西哥">🇲🇽 墨西哥</option>
-                    <option value="波多黎各">🇵🇷 波多黎各</option>
-                    <option value="荷蘭">🇳🇱 荷蘭</option>
-                    <option value="義大利">🇮🇹 義大利</option>
-                    <option value="委內瑞拉">🇻🇪 委內瑞拉</option>
-                    <option value="巴拿馬">🇵🇦 巴拿馬</option>
-                    <option value="澳洲">🇦🇺 澳洲</option>
-                    <option value="以色列">🇮🇱 以色列</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>客隊</label>
-                <select id="awayTeam">
-                    <option value="日本">🇯🇵 日本</option>
-                    <option value="台灣">🇹🇼 台灣</option>
-                    <option value="美國">🇺🇸 美國</option>
-                    <option value="多明尼加">🇩🇴 多明尼加</option>
-                    <option value="古巴">🇨🇺 古巴</option>
-                    <option value="韓國">🇰🇷 韓國</option>
-                    <option value="墨西哥">🇲🇽 墨西哥</option>
-                    <option value="波多黎各">🇵🇷 波多黎各</option>
-                    <option value="荷蘭">🇳🇱 荷蘭</option>
-                    <option value="義大利">🇮🇹 義大利</option>
-                    <option value="委內瑞拉">🇻🇪 委內瑞拉</option>
-                    <option value="巴拿馬">🇵🇦 巴拿馬</option>
-                    <option value="澳洲">🇦🇺 澳洲</option>
-                    <option value="以色列">🇮🇱 以色列</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>主隊比分</label>
-                <input type="number" id="homeScore" value="0" min="0" max="30">
-            </div>
-            <div class="form-group">
-                <label>客隊比分</label>
-                <input type="number" id="awayScore" value="0" min="0" max="30">
-            </div>
-            <div class="form-group">
-                <label>局數</label>
-                <select id="inning">
-                    <option>1局上</option><option>1局下</option>
-                    <option>2局上</option><option>2局下</option>
-                    <option>3局上</option><option>3局下</option>
-                    <option>4局上</option><option>4局下</option>
-                    <option>5局上</option><option>5局下</option>
-                    <option>6局上</option><option>6局下</option>
-                    <option>7局上</option><option>7局下</option>
-                    <option>8局上</option><option>8局下</option>
-                    <option>9局上</option><option selected>9局下</option>
-                    <option>延長10局上</option><option>延長10局下</option>
-                    <option>延長11局上</option><option>延長11局下</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>出局數</label>
-                <select id="outs">
-                    <option value="0">0 出局</option>
-                    <option value="1">1 出局</option>
-                    <option value="2">2 出局</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>壘上狀況</label>
-                <select id="bases">
-                    <option value="none">無人在壘</option>
-                    <option value="first">一壘有人</option>
-                    <option value="second">二壘有人</option>
-                    <option value="third">三壘有人</option>
-                    <option value="first-second">一二壘有人</option>
-                    <option value="first-third">一三壘有人</option>
-                    <option value="second-third">二三壘有人（得點圈）</option>
-                    <option value="loaded">滿壘！</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>球數</label>
-                <select id="count">
-                    <option>0好0壞</option>
-                    <option>1好0壞</option><option>0好1壞</option>
-                    <option>2好0壞</option><option>1好1壞</option><option>0好2壞</option>
-                    <option>3好0壞</option><option>2好1壞</option><option>1好2壞</option>
-                    <option>3好1壞</option><option>2好2壞</option>
-                    <option selected>3好2壞（滿球數）</option>
-                </select>
-            </div>
+    <!-- Chat Input -->
+    <div class="chat-card">
+        <div class="chat-label">🏟️ 描述現在的戰況</div>
+        <div class="input-row">
+            <textarea id="userInput" placeholder="例：9局下台灣2比1領先日本，滿壘2出局滿球數，打者轟出一支全壘打！" rows="3"></textarea>
+            <button class="send-btn" onclick="handleInput()">🎙️<br>錢公<br>說話！</button>
         </div>
-
-        <div class="situation-label-text">⚡ 發生了什麼事？</div>
-        <div class="situation-grid" id="situationGrid">
-            <button class="sit-btn" data-type="homerun">🚀<br>全壘打</button>
-            <button class="sit-btn" data-type="grandslam">💥<br>滿貫全壘打</button>
-            <button class="sit-btn" data-type="hit">🏃<br>安打</button>
-            <button class="sit-btn" data-type="strikeout">💨<br>三振出局</button>
-            <button class="sit-btn" data-type="flyout">🌤️<br>飛球接殺</button>
-            <button class="sit-btn" data-type="doubleplay">⚡<br>雙殺打</button>
-            <button class="sit-btn" data-type="walk">🚶<br>四壞球</button>
-            <button class="sit-btn" data-type="greatcatch">🤿<br>精彩美技</button>
-            <button class="sit-btn" data-type="error">😱<br>守備失誤</button>
-            <button class="sit-btn" data-type="wildpitch">💫<br>暴投</button>
-            <button class="sit-btn" data-type="steal">💨<br>盜壘成功</button>
-            <button class="sit-btn" data-type="pickoff">🤣<br>牽制出局</button>
-            <button class="sit-btn" data-type="squeeze">🤏<br>觸擊得分</button>
-            <button class="sit-btn" data-type="walkoff">🎉<br>再見安打</button>
-            <button class="sit-btn" data-type="hbp">🩹<br>觸身球</button>
-            <button class="sit-btn" data-type="pitchchange">🔄<br>投手換人</button>
-        </div>
-
-        <button class="generate-btn" onclick="generateCommentary()">🎙️ 讓錢公說話！</button>
+        <div class="examples-label">💡 快速範例（點一下填入）</div>
+        <div class="chips" id="chips"></div>
+        <div class="parse-hint" id="parseHint"></div>
     </div>
 
-    <!-- Output card -->
+    <!-- Error -->
+    <div class="error-card" id="errorCard">
+        <strong>🤔 錢公聽不懂這個戰況⋯⋯</strong><br>
+        請試著描述：<b>隊伍名稱</b>、<b>比分</b>、<b>局數</b>，以及<b>發生了什麼事</b>（例如全壘打、三振、安打、失誤等）。<br>
+        <br>範例：「9局下台灣以3:2領先日本，2出局滿壘，打者打出再見全壘打！」
+    </div>
+
+    <!-- Output -->
     <div class="output-card" id="outputCard">
         <div class="scoreboard" id="scoreboard"></div>
         <div class="commentator-header">
@@ -560,15 +310,13 @@
                 <h3>錢定遠（錢公）</h3>
                 <p>CPBL元年球評・服務台灣棒球35年・富邦悍將之聲</p>
             </div>
-            <div class="on-air">
-                <div class="air-dot"></div>ON AIR
-            </div>
+            <div class="on-air"><div class="air-dot"></div>ON AIR</div>
         </div>
         <div class="situation-tag" id="situationTag"></div>
         <div class="commentary-text" id="commentaryText"></div>
     </div>
 
-    <!-- Classic quotes DB -->
+    <!-- Quotes DB -->
     <div class="section-heading">🏆 錢公經典語錄資料庫</div>
     <div class="quotes-grid" id="quotesGrid"></div>
 
@@ -577,240 +325,155 @@
 <footer>
     <p>⚾ 2026 世界棒球經典賽 | 本網站為致敬台灣棒球文化而製作，非官方作品</p>
     <p>錢定遠（錢公）：台灣職棒開幕元年球評（1989年），解說生涯超過35年</p>
-    <p style="margin-top:8px;opacity:0.5;">名言資料庫根據歷年公開影片、報導及球迷整理，僅供娛樂用途</p>
+    <p style="margin-top:8px;opacity:0.5;">語錄資料庫根據歷年公開影片、報導及球迷整理，僅供娛樂用途</p>
 </footer>
 
 <script>
 // ══════════════════════════════════════════
-//  經典語錄資料庫
+//  快速範例
+// ══════════════════════════════════════════
+const EXAMPLES = [
+    '9局下台灣2:1領先日本，滿壘2出局，打者轟出滿貫全壘打！',
+    '8局上日本1:0領先台灣，1出局一壘有人，台灣打者打出安打',
+    '7局下台灣3:3平局對韓國，滿球數2出局，三振出局',
+    '9局下台灣落後1分，2出局滿壘，再見安打！',
+    '6局上美國對台灣，外野手做出精彩魚躍接球',
+    '5局下台灣守備失誤，跑者趁機上來',
+    '8局上日本暴投，台灣跑者盜壘成功',
+    '9局下台灣2出局滿壘，打者打出雙殺',
+];
+
+const chipsEl = document.getElementById('chips');
+EXAMPLES.forEach(ex => {
+    const btn = document.createElement('button');
+    btn.className = 'chip';
+    btn.textContent = ex.length > 22 ? ex.slice(0, 22) + '…' : ex;
+    btn.title = ex;
+    btn.onclick = () => {
+        document.getElementById('userInput').value = ex;
+        document.getElementById('userInput').focus();
+    };
+    chipsEl.appendChild(btn);
+});
+
+// Enter 送出（Shift+Enter 換行）
+document.getElementById('userInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleInput(); }
+});
+
+// ══════════════════════════════════════════
+//  語錄資料庫
 // ══════════════════════════════════════════
 const QUOTES = [
-    {
-        text: "這只是一個平凡的飛球⋯⋯啊！！全壘打！！！這是全壘打啊！！太不可思議了！！",
-        context: "錢公最招牌的語錄。飛球明明看似普通，球卻飛出全壘打牆，錢公的反應落差極大，成為台灣棒球史上最知名的解說名場面，也是無數梗圖的起源。",
-        tags: ["招牌語錄", "全壘打", "梗圖始祖"]
-    },
-    {
-        text: "不可能！岳東華這個球竟然撲⋯⋯撲到了！！太神奇了！太神奇了！我不敢相信！！",
-        context: "2019年中職，富邦悍將外野手岳東華做出精彩魚躍接球，錢公情緒激動到語塞，連「撲到」都說不出來，是近年最廣傳的名場面之一。",
-        tags: ["精彩守備", "名場面", "2019年"]
-    },
-    {
-        text: "逼回去就好了啊！逼回去！不要去接！逼回去！",
-        context: "夾殺跑者時，錢公習慣大喊「逼回去」，意指守備方應把跑者逼向一壘，不要冒進追殺。這句口頭禪已成為台灣棒球文化的一部分。",
-        tags: ["口頭禪", "夾殺", "守備戰術"]
-    },
-    {
-        text: "啊！飛出去了！飛出去了！越牆了！越牆了！這支球⋯⋯這支球！！！",
-        context: "全壘打時因激動過度，詞不達意，靠重複語句和聲調高度傳達震撼感。這種「語塞式」解說反而更有感染力，已成為他個人風格的標誌。",
-        tags: ["全壘打", "語塞", "個人風格"]
-    },
-    {
-        text: "滿壘！滿壘！現在是滿壘的局面！投手的壓力非常非常大！不要眨眼睛！這一球！",
-        context: "危機時刻錢公特別善於製造緊張感，「不要眨眼睛」是他的慣用語，強調比賽緊繃程度，配合激昂聲調，讓廣播前的球迷也能感受現場張力。",
-        tags: ["滿壘", "緊張感", "口頭禪"]
-    },
-    {
-        text: "雙殺！漂亮的雙殺！二壘傳一壘！！結束這個局！守備太完美了！！！",
-        context: "雙殺時錢公解說節奏明快，跟著比賽節奏瞬間拉高，是他解說時最有韻律感的時刻之一，體現他深厚的廣播解說基本功。",
-        tags: ["雙殺", "守備", "節奏感"]
-    },
-    {
-        text: "哦！這個球⋯⋯沒有接好！失誤！！失誤！！跑者可以趁機上來了！唉⋯⋯",
-        context: "發生失誤時，錢公帶著惋惜的「唉」，表達對守備方失誤的遺憾，特別是他支持的隊伍出現失誤時，這聲「唉」格外沉重。",
-        tags: ["失誤", "惋惜", "情緒"]
-    },
-    {
-        text: "要飛出去嗎！要飛出去嗎！要飛出去嗎！⋯⋯飛出去了！！！全壘打！！！",
-        context: "「要飛出去嗎」是錢公最常用的吊人胃口句型，配合聲調不斷堆疊的起伏，在廣播時代能讓聽眾全身豎起雞皮疙瘩，是他最具感染力的解說技巧。",
-        tags: ["全壘打", "吊胃口", "廣播技巧"]
-    },
-    {
-        text: "暴投！暴投！球滾到本壘後方！跑者趁機往下一壘衝！捕手追！跑者上去了！",
-        context: "暴投時的解說反應迅速精準，字句跟著球和跑者的移動流動，充分展現他從廣播時代磨練出來的純熟「畫面感」解說能力。",
-        tags: ["暴投", "廣播技巧", "反應速度"]
-    },
-    {
-        text: "這個球迷！這位球迷！在看台上一手接住了！哇！今天最亮眼的守備在外野看台！",
-        context: "偶爾球迷在看台接到全壘打球，錢公也不忘把「鏡頭」給到球迷，親民且有人情味的風格是他廣受喜愛的原因之一。",
-        tags: ["球迷", "趣事", "親民風格"]
-    },
-    {
-        text: "好球！漂亮的變化球！打者完全看不出來！這投手今天狀況非常非常好！",
-        context: "精彩投球時，錢公習慣用「非常非常」來加強語氣，重複疊詞是他的修辭特色，不說「非常好」，一定要說「非常非常好」才過癮。",
-        tags: ["投球", "誇讚", "疊詞修辭"]
-    },
-    {
-        text: "觸擊！短打！球漂亮地放在三壘前！跑者早就在跑了！分數進來！！！",
-        context: "觸擊短打時的解說字句精準，跟著動作流暢推進，體現他解說技術的細膩面——守備型戰術的解說同樣充滿畫面感。",
-        tags: ["觸擊短打", "戰術", "精準解說"]
-    }
+    { text:'這只是一個平凡的飛球⋯⋯啊！！全壘打！！！這是全壘打啊！！太不可思議了！！', context:'最招牌的語錄。飛球明明看似普通，球卻飛出全壘打牆，反應落差極大，是台灣棒球史最知名解說名場面，也是無數梗圖的起源。', tags:['招牌語錄','全壘打','梗圖始祖'] },
+    { text:'不可能！岳東華這個球竟然撲⋯⋯撲到了！！太神奇了！太神奇了！我不敢相信！！', context:'2019年中職，富邦悍將外野手岳東華做出精彩魚躍接球，錢公情緒激動到語塞，連「撲到」都說不出來，是近年最廣傳的名場面之一。', tags:['精彩守備','名場面','2019年'] },
+    { text:'逼回去就好了啊！逼回去！不要去接！逼回去！', context:'夾殺跑者時，錢公習慣大喊「逼回去」，意指守備方應把跑者逼向一壘，不要冒進追殺。這句口頭禪已成為台灣棒球文化的一部分。', tags:['口頭禪','夾殺','守備戰術'] },
+    { text:'啊！飛出去了！飛出去了！越牆了！越牆了！這支球⋯⋯這支球！！！', context:'全壘打時因激動過度，詞不達意，靠重複語句和聲調高度傳達震撼感。這種「語塞式」解說反而更有感染力，已成為他個人風格的標誌。', tags:['全壘打','語塞','個人風格'] },
+    { text:'滿壘！滿壘！現在是滿壘的局面！投手的壓力非常非常大！不要眨眼睛！這一球！', context:'危機時刻錢公特別善於製造緊張感，「不要眨眼睛」是他的慣用語，配合激昂聲調讓廣播前的球迷也能感受現場張力。', tags:['滿壘','緊張感','口頭禪'] },
+    { text:'雙殺！漂亮的雙殺！二壘傳一壘！！結束這個局！守備太完美了！！！', context:'雙殺時錢公解說節奏明快，跟著比賽節奏瞬間拉高，是他解說時最有韻律感的時刻之一，體現他深厚的廣播解說基本功。', tags:['雙殺','守備','節奏感'] },
+    { text:'哦！這個球⋯⋯沒有接好！失誤！！失誤！！跑者可以趁機上來了！唉⋯⋯', context:'發生失誤時，錢公帶著惋惜的「唉」，特別是他支持的隊伍出現失誤時，這聲「唉」格外沉重。', tags:['失誤','惋惜','情緒'] },
+    { text:'要飛出去嗎！要飛出去嗎！要飛出去嗎！⋯⋯飛出去了！！！全壘打！！！', context:'「要飛出去嗎」是錢公最常用的吊人胃口句型，配合聲調不斷堆疊的起伏，在廣播時代能讓聽眾全身豎起雞皮疙瘩。', tags:['全壘打','吊胃口','廣播技巧'] },
+    { text:'暴投！暴投！球滾到本壘後方！跑者趁機往下一壘衝！捕手追！跑者上去了！', context:'暴投時反應迅速精準，字句跟著球和跑者的移動流動，充分展現從廣播時代磨練出來的純熟「畫面感」解說能力。', tags:['暴投','廣播技巧','反應速度'] },
+    { text:'好球！漂亮的變化球！打者完全看不出來！這投手今天狀況非常非常好！', context:'精彩投球時，錢公習慣用「非常非常」加強語氣，重複疊詞是他的修辭特色，一定要說「非常非常好」才過癮。', tags:['投球','誇讚','疊詞修辭'] },
+    { text:'觸擊！短打！球漂亮地放在三壘前！跑者早就在跑了！分數進來！！！', context:'觸擊短打時的解說字句精準，跟著動作流暢推進，體現他解說技術的細膩面——守備型戰術的解說同樣充滿畫面感。', tags:['觸擊短打','戰術','精準解說'] },
+    { text:'這個球迷！這位球迷！在看台上一手接住了！哇！今天最亮眼的守備在外野看台！', context:'偶爾球迷在看台接到球，錢公也不忘把「鏡頭」給到球迷，親民且有人情味的風格是他廣受喜愛的原因之一。', tags:['球迷','趣事','親民風格'] },
 ];
 
 // ══════════════════════════════════════════
 //  情境回應資料庫
 // ══════════════════════════════════════════
 const RESPONSES = {
-    homerun: {
-        label: "🚀 全壘打",
-        templates: [
-            "這只是一個平凡的飛球⋯⋯{PAUSE}啊！！{HOME}！！全壘打！！全壘打啊！！這支球飛出去了！！！{SCORE}觀眾全站起來了！！太不可思議了！！",
-            "一棒揮出去！這個球⋯⋯要飛出去嗎！要飛出去嗎！{PAUSE}飛出去了！！{HOME}全壘打！！{SCORE}太帥了！！太帥了！！！",
-            "啊！打到了！打到了！飛啊！飛啊！飛啊！越牆了！！越牆了！！{HOME}全壘打！！{INNING}這一棒！！！太強了！！！",
-            "一棒轟出去！這個聲音！聽到了嗎！這個木棒觸球的聲音太清脆了！球飛出去了！{PAUSE}全壘打！！{HOME}全壘打！！！全場瘋了！！"
-        ]
-    },
-    grandslam: {
-        label: "💥 滿貫全壘打",
-        templates: [
-            "滿壘！滿壘！這一棒！{PAUSE}啊！！！飛出去了！！！滿貫全壘打！！！滿貫全壘打啊！！！{HOME}！！！！四分！！！四分進來了！！！這場比賽！！！太不可思議了！！！",
-            "滿壘的局面！投手的壓力非常非常大！這一球！打者揮棒！{PAUSE}全壘打！！！滿貫！！！滿貫全壘打！！！{HOME}一棒打進四分！！！{INNING}這場比賽！！！",
-            "啊！！！滿貫全壘打！！！{HOME}！！！越牆了！！！四名跑者！全部回來！！！這一棒！！！這一棒！！！讓我說什麼好！！！今晚的{HOME}！！！太強了！！！"
-        ]
-    },
-    hit: {
-        label: "🏃 安打",
-        templates: [
-            "打出去了！{DIR}方向的安打！跑者可以上來了！{BASE}{SCORE}",
-            "揮棒！打到了！{DIR}邊的安打！守備來不及！{HOME}的攻勢繼續！{SCORE}",
-            "啊！{DIR}方向！安打！安打！打線打出來了！{HOME}！{BASE}{INNING}",
-            "這一棒！打出{DIR}方向！安打！安打！跑者衝了！{BASE}{SCORE}"
-        ]
-    },
-    strikeout: {
-        label: "💨 三振出局",
-        templates: [
-            "好球！揮棒！揮空！三振！三振出局！{PITCH}！打者今天面對這個球路真的很難受！",
-            "來了！這一球！揮棒⋯⋯揮空！三振！！漂亮的{PITCH}！打者完全看不出來！投手今天狀況非常非常好！",
-            "第三好球！揮棒落空！三振！！{OUTS}出局！投手的{PITCH}！打者反應完全來不及！{SCORE}",
-            "好球！三振！出局！{SCORE}投手的表現真的讓人激賞！這種{PITCH}球路打者很難去追！"
-        ]
-    },
-    flyout: {
-        label: "🌤️ 飛球接殺",
-        templates: [
-            "飛球！往{DIR}方向！外野手追過去⋯⋯接到！接到！飛球接殺！{OUTS}出局了！{SCORE}",
-            "一棒打起來！這只是一個平凡的飛球⋯⋯外野手穩穩接住！出局！{SCORE}",
-            "高飛球往{DIR}！外野手退後⋯⋯接到！接到了！這個飛球⋯⋯接殺！{OUTS}出局！",
-            "飛球往{DIR}外野！守備上前⋯⋯接到！接到！出局！投手化解危機！{BASE}"
-        ]
-    },
-    doubleplay: {
-        label: "⚡ 雙殺打",
-        templates: [
-            "地滾球！{POS}接到！傳二壘！{PAUSE}封殺！二壘傳一壘！{PAUSE}雙殺！！！漂亮的雙殺！！這個守備太完美了！！！",
-            "地滾球！游擊手！傳二壘！踩壘！再傳一壘！！雙殺！！雙殺！！結束這個局！守備方今天真的太厲害了！！",
-            "打出去！地滾球！{POS}接住！二壘！一壘！雙殺！！漂亮！！這個連繫守備太流暢了！！！{INNING}",
-            "地滾球！雙殺！！雙殺！！把這個局結束了！投手{PITCH}換來了雙殺！！完美！！！"
-        ]
-    },
-    walk: {
-        label: "🚶 四壞球保送",
-        templates: [
-            "第四壞球！四壞保送！{HOME}的打者選球眼光很好！{BASE}，{INNING}攻勢可以繼續！",
-            "壞球！又是壞球！第四壞球！四壞保送！打者的耐心讓投手苦不堪言！{BASE}",
-            "選到四壞！保送！{SCORE}打者的選球今天真的很成熟！{HOME}可以繼續威脅！",
-            "哦！這一球！四壞球！保送！打者不去追那個球路！很有耐心！{INNING}{BASE}"
-        ]
-    },
-    greatcatch: {
-        label: "🤿 精彩美技守備",
-        templates: [
-            "不可能！這個球⋯⋯撲⋯⋯撲到了！！！太神奇了！太神奇了！！我不敢相信！！這個守備！！讓我說什麼好！！",
-            "啊！飛球往{DIR}！守備衝過去！這個球⋯⋯接得到嗎！跳起來！接到了！！接到了！！！太不可思議了！！！這個守備員！！！",
-            "這個球怎麼接得到！外野手全力衝刺！縱身一躍！{PAUSE}接到了！！接到了啊！！！！全場沸騰！！！這個美技！！！今年最精彩守備候選！！！",
-            "這個飛球⋯⋯沒有人能接到的吧！守備員還在追！貼牆！跳！！接到了！！！接到了！！！！我的天哪！！太精彩了！！！{HOME}的球迷要瘋了！！！"
-        ]
-    },
-    error: {
-        label: "😱 守備失誤",
-        templates: [
-            "哦！這個球⋯⋯沒有接好！失誤！！失誤！！跑者可以趁機上來了！唉⋯⋯{SCORE}這個守備失誤很可惜！",
-            "啊！接不住！失誤！{HOME}的守備失誤！！跑者趁機衝了！{INNING}這個失誤影響很大！！唉⋯⋯",
-            "哦！滾球穿越！穿越守備！！失誤！！這個失誤！{SCORE}跑者上來了！守備方要承受很大的壓力！！",
-            "啊！接球的手套⋯⋯沒有接穩！失誤！守備失誤！！唉⋯⋯{INNING}這種時候出現失誤真的很不應該！！"
-        ]
-    },
-    wildpitch: {
-        label: "💫 暴投",
-        templates: [
-            "啊喔！暴投！暴投！球滾到本壘後方！跑者趁機往下一壘衝！捕手追⋯⋯跑者上去了！{SCORE}",
-            "哦！這一球！投偏了！暴投！！跑者要走了！走了！{INNING}捕手趕快去追！跑者成功上來！",
-            "暴投！球往後面滾！{BASE}跑者趁機前進！！捕手趕快撿！{SCORE}這個暴投⋯⋯代價不小！",
-            "哎！投手暴投！！球飛走了！捕手去追！跑者動了！上去了！{SCORE}這對投手的打擊很大！"
-        ]
-    },
-    steal: {
-        label: "🏃💨 盜壘成功",
-        templates: [
-            "跑者起跑！跑者起跑！盜壘！傳球過去！{PAUSE}安全！！安全！！盜壘成功！！這個跑者的速度太快了！！捕手的傳球完全追不上！",
-            "盜壘！！！跑者的判斷非常好！傳球⋯⋯安全！！！盜壘成功！！{HOME}的跑者今天狀況非常好！！{INNING}",
-            "動了！跑者動了！盜壘！傳球！{PAUSE}安全！！！讓我驚呼一聲！這個盜壘！跑者的起步太完美了！！{SCORE}",
-            "起跑！盜壘！傳球⋯⋯安全！！！哇！這個盜壘！時機點抓得太好了！{SCORE}攻勢升溫！！"
-        ]
-    },
-    pickoff: {
-        label: "🤣 牽制出局",
-        templates: [
-            "牽制！牽制！投手傳一壘！跑者回去⋯⋯沒有回去！！！牽制出局！！！哇！！這個牽制！！投手的計謀！！跑者被騙了！！！",
-            "啊！牽制！傳一壘！跑者離壘太遠了！出局！！牽制出局！！這個跑者今天太大意了！！{INNING}",
-            "牽制球！傳過去了！跑者沒有回去！！出局！！哇！投手的冷靜！在這個時候打出牽制！！真的太聰明了！！",
-            "牽制！！出局！！跑者被牽制出局！！唉⋯⋯這個跑者的離壘判斷真的不太好！！{SCORE}這個出局代價很大！！"
-        ]
-    },
-    squeeze: {
-        label: "🤏 觸擊得分",
-        templates: [
-            "啊！觸擊！短打觸擊！球往三壘方向滾！三壘手衝過來！跑者也衝回來了！傳本壘！安全！！安全！！擠壓觸擊成功！！分數進來了！！",
-            "觸擊！短打！球很漂亮！三壘跑者衝回來！{PAUSE}分數！！分數進來了！！！{SCORE}短打觸擊奏效！！教練的戰術太妙了！！",
-            "短打觸擊！球放在地上！{DIR}方向！跑者早就跑了！分數！進來了！！！{HOME}的教練今天的戰術佈局非常漂亮！！",
-            "觸擊！球放在前面！跑者衝！本壘！傳本壘！{PAUSE}分數進來！！！{INNING}完美的時機！！！{HOME}得分了！！！"
-        ]
-    },
-    walkoff: {
-        label: "🎉 再見安打",
-        templates: [
-            "打出去了！{DIR}方向！安打！安打！三壘跑者衝回來了！衝回來了！{PAUSE}安全！！！再見安打！！！再見安打啊！！！！{HOME}贏了！！！{HOME}贏了！！！全場球迷衝進來了！！！今晚！！太感動了！！！",
-            "這一棒！{DIR}安打！跑者衝！衝！本壘！本壘！{PAUSE}安全！！再見！！再見安打！！！{HOME}再見安打！！！！我真的說不話來了！！！這場比賽！！！太精彩了！！！",
-            "啊！安打！{DIR}！跑者飛奔回來！傳球！{PAUSE}！安全！！再見！再見安打！！！{HOME}！！！今晚的英雄！！！全場沸騰！！！觀眾衝進場了！！！今晚！！今晚！！！"
-        ]
-    },
-    hbp: {
-        label: "🩹 觸身球",
-        templates: [
-            "哦！這一球！打到打者了！觸身球！！打者被砸到了！裁判示意！觸身球保送！{BASE}投手的控球今天真的⋯⋯唉⋯⋯",
-            "啊！觸身球！這一球打到打者！裁判舉手！保送！{HOME}又多了一個上壘機會！{BASE}",
-            "這一球偏掉了！打到打者了！觸身球！保送！{SCORE}{BASE}投手的失誤讓情勢更加複雜了！"
-        ]
-    },
-    pitchchange: {
-        label: "🔄 投手換人",
-        templates: [
-            "教練走出來了！教練走出來了！要換投手了！{INNING}現在是非常非常關鍵的時刻！新投手要面對的壓力⋯⋯非常非常大！！",
-            "哦！牛棚開始熱身了！教練決定換投手！{BASE}現在這個關鍵時刻的換投手！非常考驗教練的判斷！！",
-            "教練走上投手丘！換投手！！{SCORE}{INNING}新投手能否穩住這個局面！！每一球都是關鍵！！不要眨眼睛！！"
-        ]
-    }
+    homerun:    { label:'🚀 全壘打', templates:['這只是一個平凡的飛球⋯⋯{P}啊！！{H}！！全壘打！！全壘打啊！！這支球飛出去了！！！{SC}觀眾全站起來了！！太不可思議了！！','一棒揮出去！這個球⋯⋯要飛出去嗎！要飛出去嗎！{P}飛出去了！！{H}全壘打！！{SC}太帥了！！太帥了！！！','啊！打到了！飛啊！飛啊！飛啊！越牆了！！越牆了！！{H}全壘打！！{IN}這一棒！！！太強了！！！','一棒轟出去！這個聲音！聽到了嗎！這個木棒觸球的聲音太清脆了！球飛出去了！{P}全壘打！！{H}全壘打！！！全場瘋了！！'] },
+    grandslam:  { label:'💥 滿貫全壘打', templates:['滿壘！滿壘！這一棒！{P}啊！！！飛出去了！！！滿貫全壘打！！！滿貫全壘打啊！！！{H}！！！！四分！！！四分進來了！！！今晚！！！太不可思議了！！！','滿壘的局面！投手的壓力非常非常大！這一球！打者揮棒！{P}全壘打！！！滿貫！！！滿貫全壘打！！！{H}一棒打進四分！！！{IN}這場比賽！！！','啊！！！滿貫全壘打！！！{H}！！！越牆了！！！四名跑者！全部回來！！！這一棒！！！這一棒！！！讓我說什麼好！！！今晚的{H}！！！太強了！！！'] },
+    walkoff:    { label:'🎉 再見安打／再見全壘打', templates:['打出去了！{DIR}方向！安打！安打！跑者衝回來了！衝回來了！{P}安全！！！再見安打！！！再見安打啊！！！！{H}贏了！！！{H}贏了！！！全場球迷衝進來了！！！今晚！！太感動了！！！','這一棒！{DIR}安打！跑者衝！衝！本壘！本壘！{P}！安全！！再見！！再見安打！！！{H}再見安打！！！！我真的說不出話來了！！！這場比賽！！！太精彩了！！！','啊！安打！{DIR}！跑者飛奔回來！{P}安全！！再見！再見安打！！！{H}！！！今晚的英雄！！！全場沸騰！！！今晚！！今晚！！！'] },
+    hit:        { label:'🏃 安打', templates:['打出去了！{DIR}方向的安打！跑者可以上來了！{BA}{SC}','揮棒！打到了！{DIR}邊的安打！守備來不及！{H}的攻勢繼續！{SC}','啊！{DIR}方向！安打！安打！打線打出來了！{H}！{BA}{IN}','這一棒！打出{DIR}方向！安打！安打！跑者衝了！{BA}{SC}'] },
+    strikeout:  { label:'💨 三振出局', templates:['好球！揮棒！揮空！三振！三振出局！{PI}！打者今天面對這個球路真的很難受！','來了！這一球！揮棒⋯⋯揮空！三振！！漂亮的{PI}！打者完全看不出來！投手今天狀況非常非常好！','第三好球！揮棒落空！三振！！{OU}出局！投手的{PI}！打者反應完全來不及！{SC}','好球！三振！出局！{SC}投手的表現真的讓人激賞！這種{PI}球路打者很難去追！'] },
+    flyout:     { label:'🌤️ 飛球接殺', templates:['飛球！往{DIR}方向！外野手追過去⋯⋯接到！接到！飛球接殺！{OU}出局了！{SC}','一棒打起來！這只是一個平凡的飛球⋯⋯外野手穩穩接住！出局！{SC}','高飛球往{DIR}！外野手退後⋯⋯接到！接到了！這個飛球⋯⋯接殺！{OU}出局！','飛球往{DIR}外野！守備上前⋯⋯接到！接到！出局！投手化解危機！{BA}'] },
+    doubleplay: { label:'⚡ 雙殺打', templates:['地滾球！{POS}接到！傳二壘！{P}封殺！二壘傳一壘！{P}雙殺！！！漂亮的雙殺！！這個守備太完美了！！！','地滾球！游擊手！傳二壘！踩壘！再傳一壘！！雙殺！！雙殺！！結束這個局！守備方今天真的太厲害了！！','打出去！地滾球！{POS}接住！二壘！一壘！雙殺！！漂亮！！這個連繫守備太流暢了！！！{IN}','地滾球！雙殺！！雙殺！！把這個局結束了！投手{PI}換來了雙殺！！完美！！！'] },
+    walk:       { label:'🚶 四壞球保送', templates:['第四壞球！四壞保送！{H}的打者選球眼光很好！{BA}，{IN}攻勢可以繼續！','壞球！又是壞球！第四壞球！四壞保送！打者的耐心讓投手苦不堪言！{BA}','選到四壞！保送！{SC}打者的選球今天真的很成熟！{H}可以繼續威脅！','哦！這一球！四壞球！保送！打者不去追那個球路！很有耐心！{IN}{BA}'] },
+    greatcatch: { label:'🤿 精彩美技守備', templates:['不可能！這個球⋯⋯撲⋯⋯撲到了！！！太神奇了！太神奇了！！我不敢相信！！這個守備！！讓我說什麼好！！','啊！飛球往{DIR}！守備衝過去！這個球⋯⋯接得到嗎！跳起來！接到了！！接到了！！！太不可思議了！！！這個守備員！！！','這個球怎麼接得到！外野手全力衝刺！縱身一躍！{P}接到了！！接到了啊！！！！全場沸騰！！！這個美技！！！今年最精彩守備候選！！！','這個飛球⋯⋯沒有人能接到的吧！守備員還在追！貼牆！跳！！接到了！！！接到了！！！！我的天哪！！太精彩了！！！{H}的球迷要瘋了！！！'] },
+    error:      { label:'😱 守備失誤', templates:['哦！這個球⋯⋯沒有接好！失誤！！失誤！！跑者可以趁機上來了！唉⋯⋯{SC}這個守備失誤很可惜！','啊！接不住！失誤！！跑者趁機衝了！{IN}這個失誤影響很大！！唉⋯⋯','哦！滾球穿越！穿越守備！！失誤！！這個失誤！{SC}跑者上來了！守備方要承受很大的壓力！！','啊！接球的手套⋯⋯沒有接穩！失誤！守備失誤！！唉⋯⋯{IN}這種時候出現失誤真的很不應該！！'] },
+    wildpitch:  { label:'💫 暴投', templates:['啊喔！暴投！暴投！球滾到本壘後方！跑者趁機往下一壘衝！捕手追⋯⋯跑者上去了！{SC}','哦！這一球！投偏了！暴投！！跑者要走了！走了！{IN}捕手趕快去追！跑者成功上來！','暴投！球往後面滾！{BA}跑者趁機前進！！捕手趕快撿！{SC}這個暴投⋯⋯代價不小！','哎！投手暴投！！球飛走了！捕手去追！跑者動了！上去了！{SC}這對投手的打擊很大！'] },
+    steal:      { label:'🏃💨 盜壘成功', templates:['跑者起跑！跑者起跑！盜壘！傳球過去！{P}安全！！安全！！盜壘成功！！這個跑者的速度太快了！！捕手的傳球完全追不上！','盜壘！！！跑者的判斷非常好！傳球⋯⋯安全！！！盜壘成功！！{H}的跑者今天狀況非常好！！{IN}','動了！跑者動了！盜壘！傳球！{P}安全！！！讓我驚呼一聲！這個盜壘！跑者的起步太完美了！！{SC}','起跑！盜壘！傳球⋯⋯安全！！！哇！這個盜壘！時機點抓得太好了！{SC}攻勢升溫！！'] },
+    pickoff:    { label:'🤣 牽制出局', templates:['牽制！牽制！投手傳一壘！跑者回去⋯⋯沒有回去！！！牽制出局！！！哇！！這個牽制！！投手的計謀！！跑者被騙了！！！','啊！牽制！傳一壘！跑者離壘太遠了！出局！！牽制出局！！這個跑者今天太大意了！！{IN}','牽制球！傳過去了！跑者沒有回去！！出局！！哇！投手的冷靜！在這個時候打出牽制！！真的太聰明了！！','牽制！！出局！！跑者被牽制出局！！唉⋯⋯這個跑者的離壘判斷真的不太好！！{SC}這個出局代價很大！！'] },
+    squeeze:    { label:'🤏 觸擊得分', templates:['啊！觸擊！短打觸擊！球往三壘方向滾！三壘手衝過來！跑者也衝回來了！傳本壘！安全！！安全！！擠壓觸擊成功！！分數進來了！！','觸擊！短打！球很漂亮！三壘跑者衝回來！{P}分數！！分數進來了！！！{SC}短打觸擊奏效！！教練的戰術太妙了！！','短打觸擊！球放在地上！{DIR}方向！跑者早就跑了！分數！進來了！！！{H}的教練今天的戰術佈局非常漂亮！！','觸擊！球放在前面！跑者衝！本壘！傳本壘！{P}分數進來！！！{IN}完美的時機！！！{H}得分了！！！'] },
 };
 
 // ══════════════════════════════════════════
-//  輔助函數
+//  自然語言解析器
 // ══════════════════════════════════════════
-let selectedSituation = null;
+const TEAMS = ['台灣','日本','美國','多明尼加','古巴','韓國','墨西哥','波多黎各','荷蘭','義大利','委內瑞拉','巴拿馬','澳洲','以色列'];
 
-document.querySelectorAll('.sit-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        document.querySelectorAll('.sit-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        selectedSituation = btn.dataset.type;
-    });
-});
+function parseInput(text) {
+    const t = text;
+    const result = { home:null, away:null, homeScore:0, awayScore:0, inning:'', outs:'', bases:'none', situation:null };
 
-const rand = arr => arr[Math.floor(Math.random() * arr.length)];
+    // ── 隊伍 ──
+    const foundTeams = TEAMS.filter(team => t.includes(team));
+    if (foundTeams.length >= 2) { result.home = foundTeams[0]; result.away = foundTeams[1]; }
+    else if (foundTeams.length === 1) { result.home = foundTeams[0]; result.away = '對手'; }
+    else { result.home = '攻隊'; result.away = '守隊'; }
 
-const DIRS   = ['左外野', '中外野', '右外野', '左中間', '右中間', '一二壘間', '游擊區', '三壘方向'];
-const PITCHES = ['滑球', '變化球', '卡特球', '指叉球', '快速直球', '兩縫線快速球', '曲球', '快速球'];
-const POSES  = ['游擊手', '二壘手', '三壘手', '一壘手', '投手'];
+    // ── 比分（X:Y / X比Y / X-Y）──
+    const scorePatterns = [
+        /(\d+)\s*[:\-比]\s*(\d+)/,
+        /領先\s*(\d+)\s*[:\-比]\s*(\d+)/,
+    ];
+    for (const pat of scorePatterns) {
+        const m = t.match(pat);
+        if (m) {
+            // 判斷誰是主隊分數
+            const idx1 = t.indexOf(m[1]);
+            const teamIdx = result.home ? t.indexOf(result.home) : -1;
+            if (t.includes('領先') || t.includes('以') || teamIdx < idx1) {
+                result.homeScore = parseInt(m[1]); result.awayScore = parseInt(m[2]);
+            } else {
+                result.homeScore = parseInt(m[2]); result.awayScore = parseInt(m[1]);
+            }
+            break;
+        }
+    }
+
+    // ── 局數 ──
+    const inningMatch = t.match(/(?:延長)?(\d+)局(上|下)/);
+    if (inningMatch) result.inning = `${t.includes('延長')?'延長':''}${inningMatch[1]}局${inningMatch[2]}`;
+
+    // ── 出局數 ──
+    const outsMatch = t.match(/([012零一二])\s*出局/);
+    if (outsMatch) {
+        const map = {'0':'0','1':'1','2':'2','零':'0','一':'1','二':'2'};
+        result.outs = map[outsMatch[1]] || '0';
+    }
+
+    // ── 壘上 ──
+    if (t.match(/滿壘|滿載|三個壘包/))               result.bases = 'loaded';
+    else if (t.match(/一二壘|12壘/))                   result.bases = 'first-second';
+    else if (t.match(/一三壘|13壘/))                   result.bases = 'first-third';
+    else if (t.match(/二三壘|23壘|得點圈/))           result.bases = 'second-third';
+    else if (t.match(/一壘有人|一壘上/))              result.bases = 'first';
+    else if (t.match(/二壘有人|二壘上/))              result.bases = 'second';
+    else if (t.match(/三壘有人|三壘上/))              result.bases = 'third';
+    else if (t.match(/無人在壘|壘上無人/))            result.bases = 'none';
+
+    // ── 情境（順序重要，先比對更具體的）──
+    if      (t.match(/再見全壘打/))                                          result.situation = 'walkoff';
+    else if (t.match(/滿貫全壘打|大滿貫|滿壘全壘打/))                       result.situation = 'grandslam';
+    else if (t.match(/再見安打|再見(安打|打點|得分|一擊)/))                  result.situation = 'walkoff';
+    else if (t.match(/全壘打|轟出|越牆|飛越全壘打牆|一發全壘打|炸裂/))     result.situation = 'homerun';
+    else if (t.match(/精彩守備|美技|魚躍|撲倒接|貼牆|神接|不可思議.*接/)) result.situation = 'greatcatch';
+    else if (t.match(/雙殺打|雙殺/))                                         result.situation = 'doubleplay';
+    else if (t.match(/觸擊.*得分|短打.*得分|擠壓戰術|觸擊.*回來/))         result.situation = 'squeeze';
+    else if (t.match(/牽制出局|牽制.*出局/))                                 result.situation = 'pickoff';
+    else if (t.match(/盜壘成功|成功盜壘|盜壘/))                              result.situation = 'steal';
+    else if (t.match(/暴投/))                                                 result.situation = 'wildpitch';
+    else if (t.match(/守備失誤|接球失誤|失誤/))                              result.situation = 'error';
+    else if (t.match(/四壞球|保送|四壞保送/))                                result.situation = 'walk';
+    else if (t.match(/三振|揮空|揮棒落空/))                                  result.situation = 'strikeout';
+    else if (t.match(/飛球.*接|接殺.*飛球|高飛球.*出局/))                   result.situation = 'flyout';
+    else if (t.match(/安打|擊中|打出去.*安全|一壘安打|二壘安打|帶走跑者/)) result.situation = 'hit';
+
+    return result;
+}
 
 function getScoreCtx(home, away, hs, as_) {
     const d = hs - as_;
@@ -822,100 +485,91 @@ function getScoreCtx(home, away, hs, as_) {
     if (d === -2) return `${home}以${hs}：${as_}落後兩分！`;
     return `${home}以${hs}：${as_}大幅落後！需要奇蹟！`;
 }
-
 function getInningCtx(inning, outs) {
     const late = ['7局','8局','9局','延長'].some(s => inning.includes(s));
     if (late && outs === '2') return '現在是最後關頭！';
-    if (late) return '比賽進入了最關鍵的時刻！';
-    if (inning.includes('5局') || inning.includes('6局')) return '比賽進入中段！';
+    if (late) return '比賽進入最關鍵的時刻！';
     return '';
 }
-
-function getBasesCtx(bases) {
-    return {
-        none: '壘上無人',
-        first: '一壘有人，',
-        second: '二壘有人，',
-        third: '三壘有人，',
-        'first-second': '一二壘有人，',
-        'first-third': '一三壘有人，',
-        'second-third': '得點圈有人，',
-        loaded: '滿壘！滿壘！'
-    }[bases] || '';
+function getBasesCtx(b) {
+    return {none:'壘上無人',first:'一壘有人，',second:'二壘有人，',third:'三壘有人，','first-second':'一二壘有人，','first-third':'一三壘有人，','second-third':'得點圈有人，',loaded:'滿壘！滿壘！'}[b]||'';
 }
 
-function getOutsText(outs) {
-    return ['一','二','三'][parseInt(outs)] || outs;
-}
+const rand = arr => arr[Math.floor(Math.random() * arr.length)];
+const DIRS   = ['左外野','中外野','右外野','左中間','右中間','一二壘間','游擊區','三壘方向'];
+const PITCHES = ['滑球','變化球','卡特球','指叉球','快速直球','兩縫線快速球','曲球'];
+const POSES   = ['游擊手','二壘手','三壘手','投手'];
 
 function fillTemplate(tpl, vars) {
     return tpl
-        .replace(/{HOME}/g,  vars.home)
-        .replace(/{AWAY}/g,  vars.away)
-        .replace(/{SCORE}/g, vars.score)
-        .replace(/{INNING}/g,vars.inning)
-        .replace(/{BASE}/g,  vars.base)
-        .replace(/{OUTS}/g,  vars.outs)
-        .replace(/{DIR}/g,   rand(DIRS))
-        .replace(/{PITCH}/g, rand(PITCHES))
-        .replace(/{POS}/g,   rand(POSES))
-        .replace(/{PAUSE}/g, '⋯⋯');
-}
-
-// ══════════════════════════════════════════
-//  主生成函數
-// ══════════════════════════════════════════
-function generateCommentary() {
-    if (!selectedSituation) {
-        alert('請先選擇「發生了什麼事」！');
-        return;
-    }
-    const home  = document.getElementById('homeTeam').value;
-    const away  = document.getElementById('awayTeam').value;
-    const hs    = parseInt(document.getElementById('homeScore').value) || 0;
-    const as_   = parseInt(document.getElementById('awayScore').value) || 0;
-    const inning = document.getElementById('inning').value;
-    const outs  = document.getElementById('outs').value;
-    const count = document.getElementById('count').value;
-    const bases = document.getElementById('bases').value;
-
-    const vars = {
-        home,
-        away,
-        score:  getScoreCtx(home, away, hs, as_),
-        inning: getInningCtx(inning, outs),
-        base:   getBasesCtx(bases),
-        outs:   getOutsText(outs)
-    };
-
-    const resp = RESPONSES[selectedSituation];
-    const raw  = fillTemplate(rand(resp.templates), vars);
-
-    // Scoreboard
-    document.getElementById('scoreboard').innerHTML = `
-        <div class="scoreboard-main">
-            <span class="sb-team">${away}（客）</span>
-            <span class="sb-score">${as_} ： ${hs}</span>
-            <span class="sb-team">（主）${home}</span>
-        </div>
-        <div class="sb-meta">${inning} ｜ ${outs}出局 ｜ ${count} ｜ ${getBasesCtx(bases) || '無人在壘'}</div>
-    `;
-
-    // Commentary
-    document.getElementById('situationTag').textContent = resp.label;
-    document.getElementById('commentaryText').innerHTML = formatText(raw);
-
-    const out = document.getElementById('outputCard');
-    out.classList.add('visible');
-    out.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        .replace(/{H}/g,   vars.home)
+        .replace(/{A}/g,   vars.away)
+        .replace(/{SC}/g,  vars.score)
+        .replace(/{IN}/g,  vars.inning)
+        .replace(/{BA}/g,  vars.base)
+        .replace(/{OU}/g,  vars.outs)
+        .replace(/{DIR}/g, rand(DIRS))
+        .replace(/{PI}/g,  rand(PITCHES))
+        .replace(/{POS}/g, rand(POSES))
+        .replace(/{P}/g,   '⋯⋯');
 }
 
 function formatText(text) {
     return text
         .replace(/！！！/g, '<span class="ex">！！！</span>')
-        .replace(/！！/g,  '<span class="ex">！！</span>')
+        .replace(/！！/g,   '<span class="ex">！！</span>')
         .replace(/(全壘打|雙殺|美技|再見|滿貫|不可思議|神奇|完美|太帥)/g, '<span class="em">$1</span>')
         .replace(/⋯⋯/g, '<span class="pause">⋯⋯</span>');
+}
+
+// ══════════════════════════════════════════
+//  主處理函數
+// ══════════════════════════════════════════
+function handleInput() {
+    const raw = document.getElementById('userInput').value.trim();
+    if (!raw) return;
+
+    const parsed = parseInput(raw);
+    const errorCard  = document.getElementById('errorCard');
+    const outputCard = document.getElementById('outputCard');
+    errorCard.classList.remove('visible');
+    outputCard.classList.remove('visible');
+
+    if (!parsed.situation) {
+        errorCard.classList.add('visible');
+        errorCard.scrollIntoView({ behavior:'smooth', block:'start' });
+        return;
+    }
+
+    // 顯示解析摘要
+    const hint = document.getElementById('parseHint');
+    const labels = { home:parsed.home, away:parsed.away, score:`${parsed.homeScore}:${parsed.awayScore}`, inning:parsed.inning||'–', outs:parsed.outs?`${parsed.outs}出局`:'–', bases:getBasesCtx(parsed.bases)||'無人在壘' };
+    hint.innerHTML = `🔍 解析到：<span>${labels.home}</span> vs <span>${labels.away}</span>｜比分 <span>${labels.score}</span>｜<span>${labels.inning}</span>｜<span>${labels.outs}</span>｜<span>${labels.bases}</span>`;
+    hint.classList.add('visible');
+
+    const resp = RESPONSES[parsed.situation];
+    const vars = {
+        home: parsed.home, away: parsed.away,
+        score: getScoreCtx(parsed.home, parsed.away, parsed.homeScore, parsed.awayScore),
+        inning: getInningCtx(parsed.inning, parsed.outs),
+        base: getBasesCtx(parsed.bases),
+        outs: parsed.outs || '0'
+    };
+    const commentary = fillTemplate(rand(resp.templates), vars);
+
+    document.getElementById('scoreboard').innerHTML = `
+        <div class="sb-main">
+            <span class="sb-team">${parsed.away}（客）</span>
+            <span class="sb-score">${parsed.awayScore} ： ${parsed.homeScore}</span>
+            <span class="sb-team">（主）${parsed.home}</span>
+        </div>
+        <div class="sb-meta">${parsed.inning||'–'} ｜ ${parsed.outs||'0'}出局 ｜ ${getBasesCtx(parsed.bases)||'無人在壘'}</div>
+    `;
+    document.getElementById('situationTag').textContent = resp.label;
+    document.getElementById('commentaryText').innerHTML = formatText(commentary);
+
+    outputCard.classList.add('visible');
+    outputCard.scrollIntoView({ behavior:'smooth', block:'start' });
 }
 
 // ══════════════════════════════════════════
@@ -925,13 +579,11 @@ const tickerItems = [
     '🎙️「這只是一個平凡的飛球⋯⋯啊！！全壘打！！」— 招牌語錄',
     '⚾「不可能！岳東華這個球竟然撲⋯⋯撲到了！」— 2019年名場面',
     '🔥「逼回去就好了啊！逼回去！」— 夾殺口頭禪',
-    '😱「要飛出去嗎！要飛出去嗎！要飛出去嗎！⋯⋯飛出去了！！！」',
+    '😱「要飛出去嗎！要飛出去嗎！⋯⋯飛出去了！！！」',
     '🏟️「滿壘！現在是滿壘！不要眨眼睛！這一球！」',
     '🏆「雙殺！漂亮的雙殺！結束這個局！守備太完美了！！！」',
 ];
-
 const track = document.getElementById('ticker');
-// 雙份讓動畫無縫循環
 [...tickerItems, ...tickerItems].forEach(t => {
     const span = document.createElement('span');
     span.className = 'ticker-item';
@@ -946,11 +598,7 @@ const grid = document.getElementById('quotesGrid');
 QUOTES.forEach(q => {
     const card = document.createElement('div');
     card.className = 'q-card';
-    card.innerHTML = `
-        <div class="q-tags">${q.tags.map(t => `<span class="q-tag">${t}</span>`).join('')}</div>
-        <div class="q-text">「${q.text}」</div>
-        <div class="q-context">${q.context}</div>
-    `;
+    card.innerHTML = `<div class="q-tags">${q.tags.map(t=>`<span class="q-tag">${t}</span>`).join('')}</div><div class="q-text">「${q.text}」</div><div class="q-context">${q.context}</div>`;
     grid.appendChild(card);
 });
 </script>
